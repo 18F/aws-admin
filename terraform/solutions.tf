@@ -1,8 +1,8 @@
 locals {
-  opp_prod_account_id  = "765358534566"
-  data_gov_account_id  = "587807691409"
-  search_gov_account_id  = "213305845712"
-  api_data_gov_account_id  = "195022191070"    
+  opp_prod_account_id     = "765358534566"
+  data_gov_account_id     = "587807691409"
+  search_gov_account_id   = "213305845712"
+  api_data_gov_account_id = "195022191070"
 }
 
 module "opp_prod_setup" {

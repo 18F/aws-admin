@@ -9,9 +9,9 @@ module "login_gov" {
 }
 
 module "login_gov_alpha" {
-  source      = "./account"
-  providers   = {
-                  aws = aws.payer
+  source = "./account"
+  providers = {
+    aws = aws.payer
   }
 
   name        = "login-alpha"
@@ -19,9 +19,9 @@ module "login_gov_alpha" {
 }
 
 module "login_gov_identity_give_test" {
-  source      = "./account"
-  providers   = {
-                  aws = aws.payer
+  source = "./account"
+  providers = {
+    aws = aws.payer
   }
 
   name        = "identity-give-test"
@@ -29,9 +29,9 @@ module "login_gov_identity_give_test" {
 }
 
 module "login_gov_identity_give_dev" {
-  source      = "./account"
-  providers   = {
-                  aws = aws.payer
+  source = "./account"
+  providers = {
+    aws = aws.payer
   }
 
   name        = "identity-give-dev"
