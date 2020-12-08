@@ -1,0 +1,57 @@
+version: 2
+jobs:
+  tflint:
+    environment:
+        AWS_DEFAULT_REGION: us-east-1
+    docker:
+      - image: hashicorp/terraform:light
+    steps:
+      - checkout
+      - run:
+          name: Install curl
+          command: apk add --update curl && apk upgrade
+      - run:
+          name: terraform init
+          command: find . -type f -name "*.tf" -exec dirname {} \;|sort -u | while read m; do (cd "$m" && terraform init -input=false -backend=false) || exit 1; done
+      - run:
+          name: Validate Terraform configurations
+          command: find . -name ".terraform" -prune -o -type f -name "*.tf" -exec dirname {} \;|sort -u | while read m; do (cd "$m" && terraform validate && echo "√ $m") || exit 1 ; done
+      - run:
+          name: Check if Terraform configurations are properly formatted
+          command: if [[ -n "$(terraform fmt -write=false)" ]]; then echo "Some terraform files need be formatted, run 'terraform fmt' to fix"; exit 1; fi
+      - run:
+          name: Install tflint
+          command: curl -L -o /tmp/tflint.zip https://github.com/terraform-linters/tflint/releases/download/v0.15.4/tflint_linux_amd64.zip && unzip /tmp/tflint.zip -d /usr/local/bin
+      - run:
+          name: Check Terraform configurations with tflint
+          command: find . -name ".terraform" -prune -o -type f -name "*.tf" -exec dirname {} \;|sort -u | while read m; do (cd "$m" && tflint && echo "√ $m") || exit 1 ; done
+  tfsec:
+    docker:
+      - image: circleci/golang:latest
+    steps:
+      - checkout
+      - run:
+          name: Install tfsec
+          command: env GO111MODULE=on go get -u github.com/tfsec/tfsec/cmd/tfsec
+      - run:
+          name: Terraform static code analysis with tfsec
+          command: tfsec
+  checkov:
+     docker:
+       - image: circleci/python3:latest
+     steps:
+       - checkout
+       - run:
+           name: Install checkov
+           command: pip install checkov
+       - run:
+           name: Run checkov
+           command: checkov -d ./terraform/      
+
+workflows:
+  version: 2
+  test_and_apply:
+    jobs:
+      - tflint
+      - tfsec
+      - checkov

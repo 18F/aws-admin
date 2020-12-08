@@ -19,6 +19,11 @@ resource "aws_s3_bucket" "backend" {
   }
   versioning {
     enabled = true
+    mfa_delete = true
+  }
+  logging {
+    target_bucket = aws_s3_bucket.log_bucket.id
+    target_prefix = "tfstate/"
   }
   tags = {
     Project = "https://github.com/18F/aws-admin"
@@ -31,6 +36,9 @@ resource "aws_dynamodb_table" "state_lock" {
   read_capacity  = 1
   write_capacity = 1
   hash_key       = "LockID"
+  point_in_time-recovery {
+   enabled = true
+  }
 
   attribute {
     name = "LockID"
