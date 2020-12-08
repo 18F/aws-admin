@@ -8,6 +8,9 @@
 *.tfstate
 *.tfstate.*
 
+# cloud custodian
+*mailer.yml
+
 # Crash log files
 crash.log
 

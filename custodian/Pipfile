@@ -6,6 +6,7 @@ verify_ssl = true
 [packages]
 c7n = "latest"
 c7n-org = "latest"
+c7n-mailer = "latest"
 
 [requires]
 python_version = "3.7"
