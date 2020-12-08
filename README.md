@@ -1,4 +1,5 @@
 # TTS-wide AWS Account Adminstration
+[![Build Status](https://circleci.com/gh/18F/aws-admin.svg?style=badge)](https://circleci.com/gh/18F/aws-admin)
 
 This repository contains AWS cross-account management for the [Technology Transform Service (TTS)](http://www.gsa.gov/portal/category/25729) and is managed by the [TTS Technology Portfolio](https://handbook.18f.gov/tech-portfolio/) within the [General Services Administration](http://gsa.gov).
 
