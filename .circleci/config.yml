@@ -9,19 +9,16 @@ jobs:
       - checkout
       - run:
           name: Install curl
-          command: apk add --update curl && apk upgrade
-      - run:
-          name: cd terraform 
-          command: cd terraform     
+          command: apk add --update curl && apk upgrade   
       - run:
           name: terraform init
-          command: terraform init -input=false -backend=false
+          command: cd terraform && terraform init -input=false -backend=false
       - run:
           name: terraform validate
-          command: terraform validate
+          command: cd terraform && terraform validate
       - run:
           name: terraform fmt
-          command: terraform fmt
+          command: cd terraform && terraform fmt
       - run:
           name: Install tflint
           command: curl -L -o /tmp/tflint.zip https://github.com/terraform-linters/tflint/releases/download/v0.15.4/tflint_linux_amd64.zip && unzip /tmp/tflint.zip -d /usr/local/bin
