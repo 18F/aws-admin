@@ -1,3 +1,15 @@
+To update/run the [c7n-mailer lambda functions](https://cloudcustodian.io/docs/tools/c7n-mailer.html)
+```
+$ pipenv install
+$ pipenv run c7n-mailer --config mailer.yml --update-lambda
+```
+
+To update/run the [c7n-org](https://cloudcustodian.io/docs/tools/c7n-org.html)
+```
+$ pipenv install
+$ pipenv run python orgaccounts.py -f accounts.yml -s output/*
+```
+
 # Cloud Custodian
 A repo containing rule sets for cloud-custodian inside GSA TTS AWS accounts. This repo does not contain cloud-custodian itself.
 
