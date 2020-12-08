@@ -17,15 +17,10 @@ policies:
          value: Root
     actions:
       - type: notify
-        template: default.html
-        priority_header: 1
-        subject: "Root User Login Detected! - [custodian {{ account }} - {{ region }}]"
-        violation_desc: "A User Has Logged Into the AWS Console With The Root User:"
-        action_desc: |
-            "Please investigate and if needed revoke the root users session along
-            with any other restrictive actions if it's an unapproved root login"
-        to:
-          - amit.freeman@gsa.gov
+        slack_template: slack
+        slack_msg_color: danger
+        to: 
+          - slack://webhook/#tts-tech-portfolio-alerts
         transport:
           type: sqs
           queue: https://sqs.us-east-1.amazonaws.com/133032889584/cloud-custodian-mailer
