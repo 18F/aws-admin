@@ -11,10 +11,10 @@ terraform {
 
   required_providers {
     aws = {
-      version = ">= 3.0"
+      version = "3.0"
     }
     local = {
-      version = ">= 1.4"
+      version = "1.4"
     }
   }
 }
