@@ -4,7 +4,7 @@ jobs:
     environment:
         AWS_DEFAULT_REGION: us-east-1
     docker:
-      - image: hashicorp/terraform:0.14.0
+      - image: hashicorp/terraform:0.12.0
     steps:
       - checkout
       - run:
@@ -38,7 +38,7 @@ jobs:
           command: tfsec
   checkov:
      docker:
-       - image: cimg/python:latest
+       - image: circleci/python:latest
      steps:
        - checkout
        - run:
