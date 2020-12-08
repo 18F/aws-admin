@@ -11,8 +11,11 @@ jobs:
           name: Install curl
           command: apk add --update curl && apk upgrade
       - run:
+          name: cd terraform 
+          command: cd terraform     
+      - run:
           name: terraform init
-          command: cd terraform && terraform init -input=false -backend=false
+          command: terraform init -input=false -backend=false
       - run:
           name: terraform validate
           command: terraform validate
