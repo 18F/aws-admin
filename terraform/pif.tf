@@ -1,5 +1,5 @@
 locals {
-  pif_gov_account_id  = "541873662368" 
+  pif_gov_account_id = "541873662368"
 }
 
 module "pif_gov_setup" {

@@ -60,9 +60,9 @@ module "federalist_setup" {
 }
 
 module "federalist_admin_1" {
-  source      = "./account"
-  providers   = {
-    aws           = aws.payer
+  source = "./account"
+  providers = {
+    aws = aws.payer
   }
 
   name        = "federalist_admin_1"
@@ -77,13 +77,13 @@ module "federalist_admin_1_setup" {
 }
 
 module "federalist_admin_2" {
-  source      = "./account"
-  providers   = {
-    aws           = aws.payer
+  source = "./account"
+  providers = {
+    aws = aws.payer
   }
 
- name        = "federalist_admin_2"
- org_unit_id = module.cloud_gov.org_unit_id
+  name        = "federalist_admin_2"
+  org_unit_id = module.cloud_gov.org_unit_id
 }
 
 module "federalist_admin_2_setup" {

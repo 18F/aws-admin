@@ -1,0 +1,57 @@
+version: 2
+jobs:
+  tflint:
+    environment:
+        AWS_DEFAULT_REGION: us-east-1
+    docker:
+      - image: hashicorp/terraform:0.12.29
+    steps:
+      - checkout
+      - run:
+          name: Install curl
+          command: apk add --update curl && apk upgrade   
+      - run:
+          name: terraform init
+          command: cd terraform && terraform init -input=false -backend=false
+      - run:
+          name: terraform validate
+          command: cd terraform && terraform validate
+      - run:
+          name: terraform fmt
+          command: cd terraform && terraform fmt
+      - run:
+          name: Install tflint
+          command: curl -L -o /tmp/tflint.zip https://github.com/terraform-linters/tflint/releases/download/v0.15.4/tflint_linux_amd64.zip && unzip /tmp/tflint.zip -d /usr/local/bin
+      - run:
+          name: Check Terraform configurations with tflint
+          command: find . -name ".terraform" -prune -o -type f -name "*.tf" -exec dirname {} \;|sort -u | while read m; do (cd "$m" && tflint && echo "√ $m") || exit 1 ; done
+  tfsec:
+    docker:
+      - image: circleci/golang:latest
+    steps:
+      - checkout
+      - run:
+          name: Install tfsec
+          command: env GO111MODULE=on go get -u github.com/tfsec/tfsec/cmd/tfsec
+      - run:
+          name: Terraform static code analysis with tfsec
+          command: tfsec
+  checkov:
+     docker:
+       - image: circleci/python:latest
+     steps:
+       - checkout
+       - run:
+           name: Install checkov
+           command: pip install checkov
+       - run:
+           name: Run checkov
+           command: checkov -d ./terraform/      
+
+workflows:
+  version: 2
+  test_and_apply:
+    jobs:
+      - tflint
+      - tfsec
+      - checkov

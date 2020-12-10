@@ -1,6 +1,6 @@
 locals {
-  u_18f_enterprise_account_id  = "144433228153"
-  tts_payer_account_id  = "810504390172"   
+  u_18f_enterprise_account_id = "144433228153"
+  tts_payer_account_id        = "810504390172"
 }
 
 module "tts_payer_setup" {
