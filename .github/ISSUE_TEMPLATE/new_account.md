@@ -47,3 +47,4 @@ assignees: ""
    1. [ ] [Create an IAM user](https://console.aws.amazon.com/iam/home#/users$new?step=details) in the `Administrators` group for the requester
    1. [ ] Send them the temporary password via Google Hangouts
    1. [ ] Have the requester confirm they set up MFA
+1. [ ] Unsubscribe `devops+<whatever>@gsa.gov` from the AWS marketing emails
