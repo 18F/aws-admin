@@ -1,0 +1,80 @@
+{
+  "policy": {
+    "name": "c7n-mailer-test",
+    "resource": "ebs",
+    "filters": [
+      {
+        "Attachments": []
+      }
+    ],
+    "actions": [
+      {
+        "type": "notify",
+        "to": [
+          "slack://#tts-tech-portfolio-alerts"
+        ],
+        "transport": {
+          "type": "sqs",
+          "queue": "https://sqs.us-east-1.amazonaws.com/133032889584/cloud-custodian-messaging"
+        }
+      }
+    ]
+  },
+  "version": "0.9.8",
+  "execution": {
+    "id": "21c3c33c-33e7-4762-aa73-90a742b2cca6",
+    "start": 1607703676.9835086,
+    "end_time": 1607703677.4415483,
+    "duration": 0.4580397605895996
+  },
+  "config": {
+    "region": "us-west-2",
+    "regions": [
+      "us-west-2"
+    ],
+    "cache": "~/.cache/cloud-custodian.cache",
+    "profile": null,
+    "account_id": "133032889584",
+    "assume_role": null,
+    "external_id": null,
+    "log_group": null,
+    "tracer": null,
+    "metrics_enabled": null,
+    "metrics": null,
+    "output_dir": ".",
+    "cache_period": 15,
+    "dryrun": false,
+    "authorization_file": null,
+    "subparser": "run",
+    "config": "mailer-test.yml",
+    "configs": [
+      "mailer-test.yml"
+    ],
+    "policy_filters": [],
+    "resource_types": [],
+    "verbose": null,
+    "quiet": null,
+    "debug": false,
+    "skip_validation": false,
+    "command": "c7n.commands.run",
+    "vars": null
+  },
+  "sys-stats": {},
+  "api-stats": {
+    "ec2.DescribeVolumes": 1
+  },
+  "metrics": [
+    {
+      "MetricName": "ResourceCount",
+      "Timestamp": "2020-12-11T16:21:17.441354",
+      "Value": 0,
+      "Unit": "Count"
+    },
+    {
+      "MetricName": "ResourceTime",
+      "Timestamp": "2020-12-11T16:21:17.441377",
+      "Value": 0.4446375370025635,
+      "Unit": "Seconds"
+    }
+  ]
+}

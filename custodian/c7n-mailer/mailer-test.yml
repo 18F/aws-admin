@@ -1,0 +1,12 @@
+policies:
+  - name: c7n-mailer-test
+    resource: ebs
+    filters:
+      - Attachments: []
+    actions:
+      - type: notify
+        to:
+          - slack://#tts-tech-portfolio-alerts
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/133032889584/cloud-custodian-messaging
