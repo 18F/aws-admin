@@ -19,7 +19,7 @@ module "u_18f_enterprise_setup" {
 }
 
 module "logging" {
-  source                     = "github.com/GSA/grace-logging?ref=v0.0.5"
+  source                     = "github.com/GSA/grace-logging?ref=v0.0.11"
   access_logging_bucket_name = "gsa-tts-grace-config-access"
   cloudtrail_name            = "gsa-tts-wide"
   logging_bucket_name        = "gsa-tts-grace-config-logging"
