@@ -42,3 +42,6 @@ EOT
   filename        = "${path.module}/aws_config.ini"
   file_permission = "0600"
 }
+module "tts_jump_config" {
+  source = "./config"
+}
