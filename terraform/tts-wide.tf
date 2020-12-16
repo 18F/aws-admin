@@ -1,6 +1,7 @@
 locals {
   u_18f_enterprise_account_id = "144433228153"
   tts_payer_account_id        = "810504390172"
+  tts_jump_account_id         = "133032889584"
 }
 
 module "tts_payer_setup" {
@@ -15,6 +16,14 @@ module "u_18f_enterprise_setup" {
   source = "./account_setup"
 
   account_id              = local.tts_payer_account_id
+  cross_account_role_name = local.role_name
+}
+
+module "tts_jump_account_id" {
+  source = "./account_setup"
+
+
+  account_id              = local.tts_jump_account_id
   cross_account_role_name = local.role_name
 }
 
