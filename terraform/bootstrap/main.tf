@@ -36,7 +36,8 @@ resource "aws_dynamodb_table" "state_lock" {
   read_capacity  = 1
   write_capacity = 1
   hash_key       = "LockID"
-  point_in_time-recovery {
+
+  point_in_time_recovery {
    enabled = true
   }
 
