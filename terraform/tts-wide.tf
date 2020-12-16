@@ -18,35 +18,15 @@ module "u_18f_enterprise_setup" {
   cross_account_role_name = local.role_name
 }
 
-resource "aws_s3_bucket" "backend" {
-  bucket = "gsa-tts-grace-config"
-  acl    = "private"
-
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
-    }
-  }
-  lifecycle {
-    prevent_destroy = false
-  }
-  versioning {
-    enabled = false
-    mfa_delete = true
-  }
-  logging {
-    target_bucket = "gsa-tts-grace-config"
-    target_prefix = "tfstate/"
-  }
-  tags = {
-    Project = "https://github.com/18F/aws-admin"
-  }
+module "logging" {
+  source                     = "github.com/GSA/grace-logging?ref=v0.0.5"
+  access_logging_bucket_name = "gsa-tts-grace-config-access"
+  cloudtrail_name            = "gsa-tts-wide"
+  logging_bucket_name        = "gsa-tts-grace-config-logging"
 }
 module "config" {
     source = "github.com/GSA/grace-config?ref=v0.0.3"
-    bucket = "gsa-tts-grace-config"
+    bucket = "gsa-tts-grace-config-logging"
     config_snapshot_frequency = "Six_Hours"
     iam_password_policy_min_length = "16"
     iam_password_policy_max_age_days = "90"
