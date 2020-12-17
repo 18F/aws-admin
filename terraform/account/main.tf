@@ -12,9 +12,9 @@ resource "aws_organizations_account" "account" {
 
 module "logging" {
   source                     = "github.com/GSA/grace-logging?ref=v0.0.11"
-  access_logging_bucket_name = "gsa-tts-grace-config-access"
+  access_logging_bucket_name = "gsa-tts-grace-config-access-${var.name}"
   cloudtrail_name            = "gsa-tts-wide"
-  logging_bucket_name        = "gsa-tts-grace-config-logging"
+  logging_bucket_name        = "gsa-tts-grace-config-logging-${var.name}"
 }
 
 module "alerting" {
