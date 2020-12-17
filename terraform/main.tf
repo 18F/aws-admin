@@ -1,5 +1,5 @@
 terraform {
-  required_version = "~> 0.12.0"
+  required_version = "~> 0.14.0"
 
   backend "s3" {
     # needs to match bootstrap module
@@ -14,7 +14,7 @@ terraform {
       version = "= 3.11"
     }
     local = {
-      version = "~> 1.4"
+      version = "~> 2.0"
     }
   }
 }
