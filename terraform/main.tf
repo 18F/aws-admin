@@ -16,6 +16,9 @@ terraform {
     local = {
       version = "~> 2.0"
     }
+    template = {
+      version = "~> 2.2"
+    }
   }
 }
 
