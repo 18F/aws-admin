@@ -1,5 +1,4 @@
 provider "aws" {
-  version = "~> 3.0"
   region  = "us-east-1"
 }
 
@@ -15,4 +14,10 @@ module "config" {
     config_snapshot_frequency = "Six_Hours"
     iam_inactive_credentials_days = "120"
     access_key_expiration_days = "3"
+}
+
+module "alerting" {
+    source                    = "github.com/GSA/grace-alerting?ref=v0.0.3"
+    cloudtrail_log_group_name = "gsa-tts-wide"
+    recipient                 = "18fsoftware@gsa.gov"
 }
