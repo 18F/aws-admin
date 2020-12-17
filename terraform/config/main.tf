@@ -16,3 +16,9 @@ module "config" {
     iam_inactive_credentials_days = "120"
     access_key_expiration_days = "3"
 }
+
+module "alerting" {
+    source                    = "github.com/GSA/grace-alerting?ref=v0.0.3"
+    cloudtrail_log_group_name = "gsa-tts-wide"
+    recipient                 = "18fsoftware@gsa.gov"
+}
