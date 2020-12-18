@@ -11,6 +11,7 @@ module "tts_faas_dev" {
 module "tts_faas_dev_setup" {
   source = "./account_setup"
 
+  name        = "tts-faas-dev"
   account_id              = module.tts_faas_dev.account_id
   cross_account_role_name = local.role_name
 }
@@ -28,6 +29,7 @@ module "tts_faas_test" {
 module "tts_faas_test_setup" {
   source = "./account_setup"
 
+  name        = "tts-faas-test"
   account_id              = module.tts_faas_test.account_id
   cross_account_role_name = local.role_name
 }
@@ -45,6 +47,7 @@ module "tts_faas_prod" {
 module "tts_faas_prod_setup" {
   source = "./account_setup"
 
+  name        = "tts-faas-prod"
   account_id              = module.tts_faas_prod.account_id
   cross_account_role_name = local.role_name
 }

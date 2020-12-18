@@ -5,3 +5,7 @@ variable "account_id" {
 variable "cross_account_role_name" {
   type = string
 }
+
+variable "name" {
+  type = string
+}

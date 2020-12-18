@@ -8,6 +8,7 @@ locals {
 module "opp_prod_setup" {
   source = "./account_setup"
 
+  name                    = "opp-prod"
   account_id              = local.opp_prod_account_id
   cross_account_role_name = local.role_name
 }
@@ -24,15 +25,17 @@ module "data_gov_ssb" {
 }
 
 module "data_gov_ssb_setup" {
-  source = "./account_setup"
+  source                  = "./account_setup"
 
+  name                    = "tts-datagov-ssb"
   account_id              = module.data_gov_ssb.account_id
   cross_account_role_name = local.role_name
 }
 
 module "data_gov_setup" {
-  source = "./account_setup"
+  source                  = "./account_setup"
 
+  name                    = "data-gov"
   account_id              = local.data_gov_account_id
   cross_account_role_name = local.role_name
 }
@@ -40,8 +43,9 @@ module "data_gov_setup" {
 # search.gov
 
 module "search_gov_setup" {
-  source = "./account_setup"
+  source                  = "./account_setup"
 
+  name                    = "search-gov"
   account_id              = local.search_gov_account_id
   cross_account_role_name = local.role_name
 }
@@ -49,8 +53,9 @@ module "search_gov_setup" {
 # api.data.gov
 
 module "api_data_gov_setup" {
-  source = "./account_setup"
+  source                  = "./account_setup"
 
+  name                    = "api-data-gov"
   account_id              = local.api_data_gov_account_id
   cross_account_role_name = local.role_name
 }
