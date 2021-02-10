@@ -48,3 +48,4 @@ assignees: ""
    1. [ ] Send them the temporary password via Google Hangouts
    1. [ ] Have the requester confirm they set up MFA
 1. [ ] Unsubscribe `devops+<whatever>@gsa.gov` from the AWS marketing emails
+1. [ ] Reapply terraform for full account setup configuration once assumerole is setup.
